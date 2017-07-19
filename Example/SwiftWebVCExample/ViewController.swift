@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var textField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,27 +24,12 @@ class ViewController: UIViewController {
 
     // MARK: Push
     @IBAction func push() {
-        let webVC = SwiftWebVC(urlString: "https://www.google.com")
+        let webVC = SwiftWebVC(urlString: textField.text!)
         webVC.delegate = self
         self.navigationController?.pushViewController(webVC, animated: true)
     }
     
-    // MARK: Modal
-    @IBAction func presentModalWithDefaultTheme() {
-        let webVC = SwiftModalWebVC(urlString: "www.google.com")
-        self.present(webVC, animated: true, completion: nil)
-    }
     
-    @IBAction func presentModalWithLightBlackTheme() {
-        let webVC = SwiftModalWebVC(urlString: "https://www.google.com", theme: .lightBlack, dismissButtonStyle: .cross)
-        self.present(webVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func presentModalWithDarkTheme() {
-        let webVC = SwiftModalWebVC(urlString: "https://www.google.com", theme: .dark, dismissButtonStyle: .arrow)
-        self.present(webVC, animated: true, completion: nil)
-    }
-
 }
 
 extension ViewController: SwiftWebVCDelegate {
